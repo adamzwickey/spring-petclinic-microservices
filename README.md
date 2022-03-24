@@ -1,6 +1,11 @@
 
 # Deploy Spring Boot apps using Tetrate Service Bridge, Spring Cloud, AKS, and MySQL 
 
+- Onboard Cluter to TSB
+- Build/Push Image (TODO kpack)
+- Deploy Image
+- Onboard to TSB
+- Access/Test App
 
 * [Deploy Spring Boot apps using Azure Spring Cloud and MySQL](#deploy-spring-boot-apps-using-azure-spring-cloud-and-mysql)
   * [What will you experience](#what-will-you-experience)
