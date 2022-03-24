@@ -1,20 +1,6 @@
----
-page_type: sample
-languages:
-- java
-products:
-- Azure Spring Cloud
-description: "Deploy Spring Boot apps using Azure Spring Cloud and MySQL"
-urlFragment: "spring-petclinic-microservices"
----
 
 # Deploy Spring Boot apps using Tetrate Service Bridge, Spring Cloud, AKS, and MySQL 
 
-Azure Spring Cloud enables you to easily run a Spring Boot applications on Azure.
-
-This quickstart shows you how to deploy an existing Java Spring Cloud application to Azure. When 
-you're finished, you can continue to manage the application via the Azure CLI or switch to using the 
-Azure Portal.
 
 * [Deploy Spring Boot apps using Azure Spring Cloud and MySQL](#deploy-spring-boot-apps-using-azure-spring-cloud-and-mysql)
   * [What will you experience](#what-will-you-experience)
