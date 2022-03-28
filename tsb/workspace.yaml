@@ -1,0 +1,16 @@
+apiVersion: api.tsb.tetrate.io/v2
+kind: Workspace
+metadata:
+  description: petclinic
+  displayName: petclinic
+  name: petclinic
+  organization: workshop
+  tenant: spring
+spec:
+  description: petclinic
+  displayName: petclinic
+  namespaceSelector:
+    names:
+    - azure-workshop-azure-east/petclinic
+  privileged: false
+

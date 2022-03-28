@@ -1,0 +1,28 @@
+apiVersion: gateway.tsb.tetrate.io/v2
+kind: IngressGateway
+metadata:
+  displayName: default-ingressgateway
+  group: petclinic-gateway
+  name: default-ingressgateway
+  organization: workshop
+  tenant: spring
+  workspace: petclinic
+spec:
+  displayName: default-ingressgateway
+  http:
+  - hostname: petclinic.workshop.cx.tetrate.info
+    name: petclinic
+    port: 443
+    routing:
+      rules:
+      - route:
+          host: petclinic/api-gateway.petclinic.svc.cluster.local
+          port: 80
+    tls:
+      mode: SIMPLE
+      secretName: tsb-petclinic-certs
+  workloadSelector:
+    labels:
+      app: tsb-petclinic
+    namespace: petclinic
+

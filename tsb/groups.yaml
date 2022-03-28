@@ -1,0 +1,48 @@
+---
+apiVersion: gateway.tsb.tetrate.io/v2
+kind: Group
+metadata:
+  description: petclinic-gateway
+  displayName: petclinic-gateway
+  name: petclinic-gateway
+  organization: workshop
+  tenant: spring
+  workspace: petclinic
+spec:
+  description: petclinic-gateway
+  displayName: petclinic-gateway
+  namespaceSelector:
+    names:
+    - '*/*'
+---
+apiVersion: traffic.tsb.tetrate.io/v2
+kind: Group
+metadata:
+  description: petclinic-traffic
+  displayName: petclinic-traffic
+  name: petclinic-traffic
+  organization: workshop
+  tenant: spring
+  workspace: petclinic
+spec:
+  description: petclinic-traffic
+  displayName: petclinic-traffic
+  namespaceSelector:
+    names:
+    - '*/*'
+---
+apiVersion: security.tsb.tetrate.io/v2
+kind: Group
+metadata:
+  description: petclinic-security
+  displayName: petclinic-security
+  name: petclinic-security
+  organization: workshop
+  tenant: spring
+  workspace: petclinic
+spec:
+  description: petclinic-security
+  displayName: petclinic-security
+  namespaceSelector:
+    names:
+    - '*/*'
