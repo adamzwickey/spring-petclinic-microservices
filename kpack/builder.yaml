@@ -1,0 +1,33 @@
+apiVersion: kpack.io/v1alpha2
+kind: ClusterBuilder
+metadata:
+  name: default-builder
+  namespace: kpack
+spec:
+  serviceAccountRef:
+    name: gcr-registry-service-account
+    namespace: kpack
+  tag: gcr.io/abz-perm/default-builder
+  stack:
+    name: base
+    kind: ClusterStack
+  store:
+    name: default
+    kind: ClusterStore
+  order:
+  - group:
+    - id: paketo-buildpacks/java
+  - group:
+    - id: paketo-buildpacks/java-azure
+  - group:
+    - id: paketo-buildpacks/graalvm
+  - group:
+    - id: paketo-buildpacks/nodejs
+  - group:
+    - id: paketo-buildpacks/dotnet-core
+  - group:
+    - id: paketo-buildpacks/go
+  # - group:
+  #   - id: paketo-buildpacks/php
+  - group:
+    - id: paketo-buildpacks/nginx

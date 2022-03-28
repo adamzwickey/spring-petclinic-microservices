@@ -1,0 +1,19 @@
+apiVersion: kpack.io/v1alpha2
+kind: Image
+metadata:
+  name: petclinic-customer-service
+  namespace: petclinic
+spec:
+  tag: gcr.io/abz-perm/petclinic-customer-service:v1
+  serviceAccountName: gcr-registry-service-account
+  builder:
+    name: default-builder
+    kind: ClusterBuilder
+  source:
+    git:
+      url: https://github.com/adamzwickey/spring-petclinic-microservices
+      revision: tsb-no-code-changes
+  build:
+    env:
+      - name: BP_MAVEN_BUILT_MODULE
+        value: spring-petclinic-customers-service

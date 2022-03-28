@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gcr-registry-service-account
+  # namespace: kpack
+secrets:
+  - name: gcr-registry-credentials
