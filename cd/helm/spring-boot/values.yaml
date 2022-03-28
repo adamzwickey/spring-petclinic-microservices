@@ -1,7 +1,7 @@
 name: my-app
 image:
   name: gcr.io/abz-perm/my-app
-  tag: sha256:fbc333d3129ad2a368308560cd78e312b40b46bf9ab70688bdbe5049f4cb3b41
+  tag: latest
 version: v1
 namespace: petclinic
 createNamespace: true
