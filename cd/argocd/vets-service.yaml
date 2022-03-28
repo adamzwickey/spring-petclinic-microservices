@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/vets.helm.image-spec: image
+    argocd-image-updater.argoproj.io/vets.update-strategy: digest
+    argocd-image-updater.argoproj.io/image-list: vets=gcr.io/abz-perm/petclinic-vets-service:v1
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+  name: vets-service
+  namespace: argocd
+spec:
+  destination:
+    name: cloud-a-01
+    namespace: petclinic
+  project: petclinic
+  source:
+    helm:
+      values: |-
+        name: vets-service
+        image: gcr.io/abz-perm/petclinic-vets-service@sha256:6fafe79f880bfc3c7959f59bd9e7ee79338f37bdbaac55628d99f6ac80dcedd6
+        version: v1
+        namespace: petclinic
+        createNamespace: false
+        replicas: 1
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: kubernetes,mysql
+          - name: SPRING_CLOUD_DISCOVERY_ENABLED
+            value: "false"
+          - name: SPRING_CLOUD_CONFIG_URI
+            value: http://configserver:8888
+          - name: MYSQL_SERVER_FULL_NAME
+            value: CHANGEME
+          - name: MYSQL_DATABASE_NAME
+            value: CHANGEME
+          - name: MYSQL_SERVER_ADMIN_LOGIN_NAME
+            value: CHANGEME
+          - name: MYSQL_SERVER_ADMIN_PASSWORD
+            value: CHANGEME
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            cpu: 1000m
+            memory: 1Gi
+        ingress:
+          create: false
+    path: cd/helm/spring-boot
+    repoURL: https://github.com/adamzwickey/spring-petclinic-microservices
+    targetRevision: tsb-no-code-changes
+  syncPolicy:
+    automated: {}

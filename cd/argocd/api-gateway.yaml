@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/api-gateway.helm.image-spec: image
+    argocd-image-updater.argoproj.io/api-gateway.update-strategy: digest
+    argocd-image-updater.argoproj.io/image-list: api-gateway=gcr.io/abz-perm/petclinic-api-gateway:v1
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+  name: api-gateway
+  namespace: argocd
+spec:
+  destination:
+    name: cloud-a-01
+    namespace: petclinic
+  project: petclinic
+  source:
+    helm:
+      values: |-
+        name: api-gateway
+        image: gcr.io/abz-perm/petclinic-api-gateway@sha256:552b209ff40be05f220c1cfb0dec75a5485b84254b3dcd9c48fdcfe02e1b1f82'
+        version: v1
+        namespace: petclinic
+        createNamespace: true
+        replicas: 1
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: kubernetes
+          - name: SPRING_CLOUD_DISCOVERY_ENABLED
+            value: "false"
+          - name: SPRING_CLOUD_CONFIG_URI
+            value: http://configserver:8888
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            cpu: 1000m
+            memory: 1Gi
+        ingress:
+          create: true
+          name: tsb-petclinic
+          domain: petclinic.workshop.cx.tetrate.info
+          certificateIssuerName: letsencrypt-dns-cluster-issuer
+    path: cd/helm/spring-boot
+    repoURL: https://github.com/adamzwickey/spring-petclinic-microservices
+    targetRevision: tsb-no-code-changes
+  syncPolicy:
+    automated: {}
