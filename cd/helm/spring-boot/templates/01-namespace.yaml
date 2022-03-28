@@ -1,0 +1,9 @@
+{{ if eq .Values.createNamespace true }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.namespace }}
+  labels:
+    istio-injection: enabled
+{{- end }} 

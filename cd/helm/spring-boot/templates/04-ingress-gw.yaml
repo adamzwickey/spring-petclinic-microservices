@@ -1,0 +1,27 @@
+{{ if eq .Values.ingress.create true }}
+---
+apiVersion: install.tetrate.io/v1alpha1
+kind: IngressGateway
+metadata:
+  name: {{ .Values.ingress.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  kubeSpec:
+    service:
+      type: LoadBalancer
+      annotations:
+        "external-dns.alpha.kubernetes.io/hostname": "{{ .Values.ingress.domain }}."
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.ingress.name }}-certs
+  namespace: {{ .Values.namespace }}
+spec:
+  secretName: {{ .Values.ingress.name }}-certs
+  issuerRef:
+    name: {{ .Values.ingress.certificateIssuerName }}
+    kind: ClusterIssuer
+  dnsNames:
+    - {{ .Values.ingress.domain }}
+{{- end }} 
