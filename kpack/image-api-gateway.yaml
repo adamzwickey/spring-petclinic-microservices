@@ -4,7 +4,9 @@ metadata:
   name: petclinic-api-gateway
   namespace: petclinic
 spec:
-  tag: gcr.io/abz-perm/petclinic-api-gateway:v1
+  tag: gcr.io/abz-perm/petclinic-api-gateway
+  additionalTags:
+    - gcr.io/abz-perm/petclinic-api-gateway:v1
   serviceAccountName: gcr-registry-service-account
   builder:
     name: default-builder
