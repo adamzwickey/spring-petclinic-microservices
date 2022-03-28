@@ -4,7 +4,9 @@ metadata:
   name: petclinic-visits-service
   namespace: petclinic
 spec:
-  tag: gcr.io/abz-perm/petclinic-visits-service:v1
+  tag: gcr.io/abz-perm/petclinic-visits-service
+  additionalTags:
+    - gcr.io/abz-perm/petclinic-visits-service:v1
   serviceAccountName: gcr-registry-service-account
   builder:
     name: default-builder

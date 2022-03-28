@@ -4,7 +4,9 @@ metadata:
   name: petclinic-customer-service
   namespace: petclinic
 spec:
-  tag: gcr.io/abz-perm/petclinic-customer-service:v1
+  tag: gcr.io/abz-perm/petclinic-customer-service
+  additionalTags:
+    - gcr.io/abz-perm/petclinic-customer-service:v1
   serviceAccountName: gcr-registry-service-account
   builder:
     name: default-builder
